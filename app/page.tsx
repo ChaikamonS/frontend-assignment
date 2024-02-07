@@ -65,7 +65,14 @@ export default function Home() {
   useEffect(() => {
     setMockDataFilter([...mockdata])
 
-    setMounted(true)
+    fetch('http://localhost:3000/api/group')
+      .then((res) => res.json())
+      .then((data) => {
+        setMounted(true)
+        console.log("Log API group department => ", data)
+        console.log("Log API group department JSON STR => ", JSON.stringify(data))
+      })
+
   }, [])
   if (!mounted) {
     return <div>Loading...</div>
